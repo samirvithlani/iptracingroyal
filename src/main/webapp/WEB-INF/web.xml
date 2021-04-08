@@ -1,0 +1,27 @@
+<!DOCTYPE web-app PUBLIC
+ "-//Sun Microsystems, Inc.//DTD Web Application 2.3//EN"
+ "http://java.sun.com/dtd/web-app_2_3.dtd" >
+
+<web-app>
+  <display-name>Archetype Created Web Application</display-name>
+  <servlet>
+  	<servlet-name>AddStudentController</servlet-name>
+  	<display-name>AddStudentController</display-name>
+  	<description></description>
+  	<servlet-class>com.controller.AddStudentController</servlet-class>
+  </servlet>
+  <servlet>
+  	<servlet-name>StudentListController</servlet-name>
+  	<display-name>StudentListController</display-name>
+  	<description></description>
+  	<servlet-class>com.controller.StudentListController</servlet-class>
+  </servlet>
+  <servlet-mapping>
+  	<servlet-name>AddStudentController</servlet-name>
+  	<url-pattern>/AddStudentController</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+  	<servlet-name>StudentListController</servlet-name>
+  	<url-pattern>/StudentListController</url-pattern>
+  </servlet-mapping>
+</web-app>

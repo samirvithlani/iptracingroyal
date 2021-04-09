@@ -42,6 +42,7 @@ public class AddStudentController extends HttpServlet {
 
 		} else {
 
+			System.out.println("new changes");
 			response.sendRedirect("error.jsp");
 		}
 

@@ -24,6 +24,7 @@ public class StudentListController extends HttpServlet {
 		// TODO Auto-generated method stub
 		response.getWriter().append("Served at: ").append(request.getContextPath());
 		
+		System.out.println("new changes");
 		List<StudentBean> studentList = new StudentDao().getAllStudents();
 		request.setAttribute("studentList", studentList);
 		request.getRequestDispatcher("StudentList.jsp").forward(request, response);

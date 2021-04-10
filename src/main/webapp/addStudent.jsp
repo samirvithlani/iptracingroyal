@@ -23,6 +23,13 @@
 </head>
 <body>
 
+	<%@include file="Header.jsp"%>
+	<%
+	count();
+	%>
+	<%=x%>
+	<h1>
+		LOGGED IN USER =<%=name%></h1>
 	<form action="AddStudentController" method="post">
 		<div class="form-group">
 

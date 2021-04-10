@@ -16,6 +16,12 @@
   	<description></description>
   	<servlet-class>com.controller.StudentListController</servlet-class>
   </servlet>
+  <servlet>
+  	<servlet-name>HeaderSession</servlet-name>
+  	<display-name>HeaderSession</display-name>
+  	<description></description>
+  	<servlet-class>com.controller.HeaderSession</servlet-class>
+  </servlet>
   <servlet-mapping>
   	<servlet-name>AddStudentController</servlet-name>
   	<url-pattern>/AddStudentController</url-pattern>
@@ -23,5 +29,9 @@
   <servlet-mapping>
   	<servlet-name>StudentListController</servlet-name>
   	<url-pattern>/StudentListController</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+  	<servlet-name>HeaderSession</servlet-name>
+  	<url-pattern>/HeaderSession</url-pattern>
   </servlet-mapping>
 </web-app>

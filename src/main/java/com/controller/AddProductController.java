@@ -2,6 +2,7 @@ package com.controller;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.Date;
 import java.util.List;
 
 import javax.servlet.ServletContext;
@@ -15,6 +16,9 @@ import org.apache.commons.fileupload.FileItemFactory;
 import org.apache.commons.fileupload.FileUploadException;
 import org.apache.commons.fileupload.disk.DiskFileItemFactory;
 import org.apache.commons.fileupload.servlet.ServletFileUpload;
+
+import com.bean.ProductBean;
+import com.dao.ProductDao;
 
 /**
  * Servlet implementation class AddProductController
@@ -45,13 +49,12 @@ public class AddProductController extends HttpServlet {
 		String fieldName = null;
 		String fieldValue = null;
 		String filName = null;
-
+		ProductBean productBean = new ProductBean();
 		try {
-			//request  as a list  ->
+			// request as a list ->
 			items = upload.parseRequest(request); // txtProductname,detail,file
 			for (int i = 0; i < items.size(); i++) {
 
-				
 				FileItem item = items.get(i);
 
 				//
@@ -66,11 +69,13 @@ public class AddProductController extends HttpServlet {
 						String value = fieldValue;
 						System.out.println(value);
 						// set in productBean productBean.setPname(value)
+						productBean.setpName(value);
 					}
 					if (fieldName.equalsIgnoreCase("txtProductDetail")) {
 
 						String value = fieldValue;
 						System.out.println(value);
+						productBean.setpDetail(value);
 						// set in productBean productBean.setPDetail(value)
 
 					}
@@ -86,22 +91,53 @@ public class AddProductController extends HttpServlet {
 					// path : c:abcd:xyz //// filename
 
 					filName = filName.substring(filName.lastIndexOf("\\") + 1, filName.length());
-					//productBean.setImagepath()
+					// productBean.setImagepath()
 					System.out.println("filename 1" + filName);
 
 					ServletContext context = getServletContext();
 
-					String path = "E:\\samir\\eclipse workspaces_legion\\advance java_jsp_servlet\\IpTracing\\upload";
+					// String path = "E:\\samir\\eclipse workspaces_legion\\advance
+					// java_jsp_servlet\\IpTracing\\upload";
 					// project
 //					String abspath = getServletContext().getRealPath(path);
-					//System.out.println("abs path" + abspath);
+					// System.out.println("abs path" + abspath);
 
-					File file = new File(path + File.separator + filName);
+					String path = "/upload";
+					String abspath = getServletContext().getRealPath(path);
+					System.out.println(abspath);
+
+					File file = new File(abspath + File.separator + filName);
 
 					try {
 
-						//FileItem
-						item.write(file);
+						if (filName.isEmpty()) {
+
+							/// validate ...
+						} else {
+
+							System.out.println("MIME" + context.getMimeType(filName));
+							if (context.getMimeType(filName).equals("image/jpeg")
+									|| context.getMimeType(filName).equals("image/png")) {
+
+								item.write(file);
+								String date = new Date().toLocaleString();
+								productBean.setpImageURL(file.getName().concat(date));
+								if (new ProductDao().addProduct(productBean)) {
+
+									response.sendRedirect("ViewProductController");
+								} else {
+
+									response.sendRedirect("ViewProductController");
+								}
+							}
+
+							else {
+
+								request.setAttribute("error", "only jpeg or png file allowed..");
+								request.getRequestDispatcher("addProduct.jsp").forward(request, response);
+							}
+
+						}
 
 					} catch (Exception e) {
 						// TODO Auto-generated catch block

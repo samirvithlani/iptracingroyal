@@ -28,6 +28,12 @@
   	<description></description>
   	<servlet-class>com.controller.AddProductController</servlet-class>
   </servlet>
+  <servlet>
+  	<servlet-name>ViewProductController</servlet-name>
+  	<display-name>ViewProductController</display-name>
+  	<description></description>
+  	<servlet-class>com.controller.ViewProductController</servlet-class>
+  </servlet>
   <servlet-mapping>
   	<servlet-name>AddStudentController</servlet-name>
   	<url-pattern>/AddStudentController</url-pattern>
@@ -43,5 +49,9 @@
   <servlet-mapping>
   	<servlet-name>AddProductController</servlet-name>
   	<url-pattern>/AddProductController</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+  	<servlet-name>ViewProductController</servlet-name>
+  	<url-pattern>/ViewProductController</url-pattern>
   </servlet-mapping>
 </web-app>

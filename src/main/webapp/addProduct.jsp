@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-	pageEncoding="ISO-8859-1"%>
+	pageEncoding="ISO-8859-1" isELIgnored="false"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -19,7 +19,7 @@
 				<td><input type="text" name="txtProductDetail"></td>
 			</tr>
 			<tr>
-				<td><input type="file" name="image"></td>
+				<td><input type="file" name="image"> ${error }</td>
 			</tr>
 			<tr>
 
